@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Todo } from '../../interfaces/todo';
 
 @Component({
   selector: 'todo-list',
@@ -42,13 +43,4 @@ export class TodoListComponent implements OnInit {
   }
 
 
-}
-
-
-
-interface Todo {
-  id: number,
-  title: string,
-  completed: boolean,
-  editing: boolean
 }
