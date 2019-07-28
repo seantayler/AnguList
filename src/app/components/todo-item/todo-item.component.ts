@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Todo } from '../../interfaces/todo';
+import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
   selector: 'todo-item',
@@ -9,33 +10,33 @@ import { Todo } from '../../interfaces/todo';
 export class TodoItemComponent implements OnInit {
 
   @Input() todo:Todo;
-  @Output() checkedItem = new EventEmitter();
-  // @Output() blurredItem = new EventEmitter();
-  // @Output() enteredItem = new EventEmitter();
-  @Output() doubleClickedItem = new EventEmitter();
-  @Output() cancelledItem = new EventEmitter();
-  @Output() deletedItem = new EventEmitter();
+  // @Output() checkedItem = new EventEmitter();
+  // // @Output() blurredItem = new EventEmitter();
+  // // @Output() enteredItem = new EventEmitter();
+  // @Output() doubleClickedItem = new EventEmitter();
+  // @Output() cancelledItem = new EventEmitter();
+  // @Output() deletedItem = new EventEmitter();
 
-  constructor() { }
+  constructor(private todoService:TodoService) { }
 
   ngOnInit() {
   }
 
-  doneEdit(todo:Todo):void {
-    this.checkedItem.emit(todo)
-  }
+  // doneEdit(todo:Todo):void {
+  //   this.checkedItem.emit(todo)
+  // }
 
-  editTodo(todo:Todo):void {
-    this.doubleClickedItem.emit(todo)
-  }
+  // editTodo(todo:Todo):void {
+  //   this.doubleClickedItem.emit(todo)
+  // }
 
-  cancelEdit(todo:Todo):void {
-    this.cancelledItem.emit(todo)
-  }
+  // cancelEdit(todo:Todo):void {
+  //   this.cancelledItem.emit(todo)
+  // }
 
-  deleteTodo(todo:Todo):void {
-    this.deletedItem.emit(todo)
-  }
+  // deleteTodo(todo:Todo):void {
+  //   this.deletedItem.emit(todo)
+  // }
 
 
 }
