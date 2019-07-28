@@ -1,10 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../../interfaces/todo';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  styleUrls: ['./todo-list.component.css'],
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(50px)'}),
+        animate(250, style({ opacity: 1, transform: 'translateY(0px)'}))
+      ]),
+      transition(':leave', [
+        animate(250, style({ opacity: 0, transform: 'translateY(30px)'}))
+      ])
+    ])
+  ]
 })
 export class TodoListComponent implements OnInit {
 
@@ -12,6 +24,7 @@ export class TodoListComponent implements OnInit {
   todoTitle:string = '';
   todoId:number = 2;
   beforeEditCache:string = ''; 
+  filter:string = 'all';
 
   constructor() { }
 
@@ -77,6 +90,17 @@ export class TodoListComponent implements OnInit {
     } else if(this.todos.filter(todo => !todo.completed).length === 0){
       this.todos.forEach(todo => todo.completed = false)
     }
+  }
+
+  filterTodos():Todo[] {
+    if(this.filter === 'all'){
+      return this.todos
+    } else if(this.filter === 'active'){
+      return this.todos.filter(todo => !todo.completed)
+    } else if(this.filter === 'completed'){
+      return this.todos.filter(todo => todo.completed)
+    }
+    return this.todos
   }
 
 }
