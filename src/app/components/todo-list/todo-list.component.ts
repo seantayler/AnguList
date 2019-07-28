@@ -71,4 +71,12 @@ export class TodoListComponent implements OnInit {
     this.todos = this.todos.filter(todo => !todo.completed)
   }
 
+  checkAllTodos():void {
+    if(this.todos.filter(todo => !todo.completed).length > 0){
+      this.todos.forEach(todo => todo.completed = true)
+    } else if(this.todos.filter(todo => !todo.completed).length === 0){
+      this.todos.forEach(todo => todo.completed = false)
+    }
+  }
+
 }
