@@ -9,13 +9,13 @@ import { Todo } from '../../interfaces/todo';
 export class TodoListComponent implements OnInit {
 
   todos:Todo[];
-  todoTitle:string;
+  todoTitle:string = '';
   todoId:number = 2;
+  beforeEditCache:string = ''; 
 
   constructor() { }
 
   ngOnInit() {
-    this.todoTitle = '';
     this.todos = [{
       'id': 1,
       'title': 'finish todo app',
@@ -42,9 +42,33 @@ export class TodoListComponent implements OnInit {
     this.todos = this.todos.filter(todo => todo.id !== id)
   }
 
-  editTodo(todo:Todo):void{
+  editTodo(todo:Todo):void {
+    this.beforeEditCache = todo.title;
     todo.editing = true;
   }
 
+  doneEdit(todo:Todo):void {
+    if(todo.title.trim().length === 0){
+      todo.title = this.beforeEditCache;
+    }
+    todo.editing = false; 
+  }
+
+  cancelEdit(todo:Todo):void {
+    todo.title = this.beforeEditCache;
+    todo.editing = false; 
+  }
+
+  remaining():number {
+    return this.todos.filter(todo => !todo.completed).length
+  }
+
+  atLeastOneCompleted():boolean {
+    return this.todos.filter(todo => todo.completed).length > 0
+  }
+
+  clearCompleted():void {
+    this.todos = this.todos.filter(todo => !todo.completed)
+  }
 
 }
