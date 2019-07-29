@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AutofocusModule } from 'angular-autofocus-fix';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
@@ -18,7 +19,8 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
     BrowserModule,
     FormsModule,
     AutofocusModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,19 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Todo } from '../interfaces/todo';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
+  todos: Todo[] = [];
   todoTitle: string = '';
   idForTodo: number = 4;
   beforeEditCache: string = '';
   filter: string = 'all';
   anyRemainingModel: boolean = true;
-  todos: Todo[] = [];
+  todosUrl:string = 'https://jsonplaceholder.typicode.com/todos?_limit=1';
 
-  constructor() { }
+  constructor(private http:HttpClient) { 
+    this.getTodos()
+  }
 
+  getTodos():void {
+    this.http.get(this.todosUrl).subscribe((response: any) => this.todos = response)
+  }
+  
   addTodo(todoTitle: string): void {
     if (todoTitle.trim().length === 0) {
       return;

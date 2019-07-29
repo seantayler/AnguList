@@ -3,6 +3,7 @@
 <todo-item
   *ngFor="let todo of todoService.filterTodos()"
   [todo]="todo"
+  @fade
 ></todo-item>
 
 <!-- <div class="todo-item" *ngFor="let todo of todosFiltered()" @fade>

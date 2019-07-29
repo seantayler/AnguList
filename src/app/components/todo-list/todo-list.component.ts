@@ -20,6 +20,7 @@ import { TodoService } from 'src/app/services/todo.service';
     ])
   ]
 })
+
 export class TodoListComponent implements OnInit {
 
   // todos:Todo[];
@@ -31,6 +32,7 @@ export class TodoListComponent implements OnInit {
   constructor(private todoService:TodoService) { }
 
   ngOnInit() {
+    // this.todoService.getTodos().subscribe(todos => this.todos = todos)
     // this.todos = [{
     //   'id': 1,
     //   'title': 'finish todo app',
